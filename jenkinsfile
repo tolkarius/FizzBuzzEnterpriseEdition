@@ -23,15 +23,14 @@ pipeline {
         stage("coverage") {
         
             steps {
-                echo 'bcreating reports...'
+                echo 'creating reports...'
             }
         }
         
         stage("deploy") {
         
             steps {
-                sh 'npm install'
-                sh 'npm build'
+                echo 'deploying...'
             }
         }
     }
