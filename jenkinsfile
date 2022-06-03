@@ -2,6 +2,10 @@ pipeline {
 
     agent any
     
+    environment {
+        NEW_VERSION = '6.9'
+        SERVER_CREDENTIALS = credentials('server-credential')
+    
     stages {
     
         stage("build") {
@@ -31,8 +35,21 @@ pipeline {
         
             steps {
                 echo 'deploying...'
+                echo "deploying with ${SERVER_CREDENTIALS}"
+                sh "{SERVER_CREDENTIALS}""
             }
         }
     }
+    port {
+        always {
+        // this will always executes no matter of the outcome
+        }
+        success {
+        // if success
+        }
+        failure {
+        // if failed
+        }
+   }
 }
             
